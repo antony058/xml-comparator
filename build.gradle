@@ -1,0 +1,14 @@
+group 'ru.priamosudov'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'org.springframework:spring-context:5.0.5.RELEASE'
+    compile 'xmlunit:xmlunit:1.3'
+}
