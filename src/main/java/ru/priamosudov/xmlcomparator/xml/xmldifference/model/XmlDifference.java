@@ -34,9 +34,6 @@ public class XmlDifference {
     @Column(name = "message")
     private String message;
 
-    @Column(name = "file_name")
-    private String fileName;
-
     public String getControlXPath() {
         return controlXPath;
     }
@@ -99,13 +96,5 @@ public class XmlDifference {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 }

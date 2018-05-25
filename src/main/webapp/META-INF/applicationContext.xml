@@ -11,6 +11,4 @@
 
     <context:component-scan base-package="ru.priamosudov.xmlcomparator"/>
 
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
 </beans>
