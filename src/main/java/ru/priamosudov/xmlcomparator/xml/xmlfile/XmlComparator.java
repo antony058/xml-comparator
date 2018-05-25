@@ -43,6 +43,10 @@ public class XmlComparator {
         }
     }
 
+    public List<Difference> getDifferences() {
+        return differences;
+    }
+
     private void readXmlIfHasNotBeenRead(XmlFile xmlFile) {
         if (!xmlFile.isXmlRead()) {
             xmlFile.read();

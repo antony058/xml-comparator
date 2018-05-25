@@ -15,4 +15,7 @@ dependencies {
     compile 'org.postgresql:postgresql:42.2.2'
     compile 'org.hibernate:hibernate-core:5.1.0.Final'
     compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
+    compile 'org.jooq.trial:jooq:3.9.6'
+    compile 'org.jooq.trial:jooq-meta:3.9.6'
+    compile 'org.jooq.trial:jooq-codegen:3.9.6'
 }
