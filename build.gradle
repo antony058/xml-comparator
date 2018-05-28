@@ -15,4 +15,5 @@ dependencies {
     compile 'org.postgresql:postgresql:42.2.2'
     compile 'org.hibernate:hibernate-core:5.1.0.Final'
     compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
+    compile group: 'com.prowidesoftware', name: 'pw-swift-core', version: 'SRU2017-7.9.7'
 }

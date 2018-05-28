@@ -1,6 +1,7 @@
 package ru.priamosudov.xmlcomparator.directory.validation;
 
 import ru.priamosudov.xmlcomparator.exception.ValidationException;
+import ru.priamosudov.xmlcomparator.file.AbstractFile;
 import ru.priamosudov.xmlcomparator.xml.xmlfile.XmlFile;
 
 import java.io.File;
@@ -8,7 +9,7 @@ import java.io.File;
 public class DirectoryValidator {
     private static final String DIRECTORY_NOT_FOUND = "Каталог не найден";
     private static final String ZIP_FILES_NOT_FOUND = "ZIP-файлы не найдены";
-    private static final String XML_FILES_WRONG_AMOUNT = "В архиве должно быть 2 xml-файла для сравнения";
+    private static final String FILES_WRONG_AMOUNT = "В архиве должно быть 2 файла для сравнения";
 
     public static void checkFilesValid(File... files) {
         if (files == null) {
@@ -18,9 +19,9 @@ public class DirectoryValidator {
         }
     }
 
-    public static void checkXmlFilesAmount(XmlFile... xmlFiles) {
-        if (xmlFiles == null || xmlFiles.length != 2) {
-            throw new ValidationException(XML_FILES_WRONG_AMOUNT);
+    public static void checkXmlFilesAmount(AbstractFile... files) {
+        if (files == null || files.length != 2) {
+            throw new ValidationException(FILES_WRONG_AMOUNT);
         }
     }
 }

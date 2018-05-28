@@ -34,6 +34,9 @@ public class XmlDifference {
     @Column(name = "message")
     private String message;
 
+    @Column(name = "file_name")
+    private String fileName;
+
     public String getControlXPath() {
         return controlXPath;
     }
@@ -96,5 +99,46 @@ public class XmlDifference {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = result * prime + controlParentXPath.hashCode();
+        result = result * prime + testParentXPath.hashCode();
+
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+        XmlDifference xmlDifference = (XmlDifference) obj;
+        if (!xmlDifference.controlParentXPath.equals(controlParentXPath)) {
+            return false;
+        }
+        if (!xmlDifference.testParentXPath.equals(testParentXPath)) {
+            return false;
+        }
+
+        return true;
     }
 }

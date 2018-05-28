@@ -7,6 +7,7 @@ import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.Difference;
 import org.xmlunit.diff.ElementSelectors;
 import ru.priamosudov.xmlcomparator.exception.ValidationException;
+import ru.priamosudov.xmlcomparator.file.AbstractFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +15,11 @@ import java.util.List;
 public class XmlComparator {
     private static final String NOT_VALID_XML_FILE = "Не валидный xml-файл";
     private static final String DIFFERENCE_TYPE_CHILD_NODE_LIST_LENGTH = "child nodelist length";
-    private final XmlFile xmlFileDev;
-    private final XmlFile xmlFileProm;
+    private final AbstractFile xmlFileDev;
+    private final AbstractFile xmlFileProm;
     private final List<Difference> differences;
 
-    public XmlComparator(XmlFile xmlFileDev, XmlFile xmlFileProm) {
+    public XmlComparator(AbstractFile xmlFileDev, AbstractFile xmlFileProm) {
         this.xmlFileDev = xmlFileDev;
         this.xmlFileProm = xmlFileProm;
         differences = new ArrayList<>();
@@ -43,8 +44,12 @@ public class XmlComparator {
         }
     }
 
-    private void readXmlIfHasNotBeenRead(XmlFile xmlFile) {
-        if (!xmlFile.isXmlRead()) {
+    public List<Difference> getDifferences() {
+        return differences;
+    }
+
+    private void readXmlIfHasNotBeenRead(AbstractFile xmlFile) {
+        if (!xmlFile.isFileRead()) {
             xmlFile.read();
         }
     }
@@ -53,8 +58,8 @@ public class XmlComparator {
         Diff diff;
         try {
             diff = DiffBuilder
-                    .compare(xmlFileDev.getXmlFileContent())
-                    .withTest(xmlFileProm.getXmlFileContent())
+                    .compare(xmlFileDev.getFileContent())
+                    .withTest(xmlFileProm.getFileContent())
                     .checkForSimilar()
                     .ignoreComments()
                     .ignoreWhitespace()

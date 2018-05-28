@@ -1,6 +1,8 @@
 package ru.priamosudov.xmlcomparator.ziparchive;
 
 import ru.priamosudov.xmlcomparator.directory.validation.DirectoryValidator;
+import ru.priamosudov.xmlcomparator.file.AbstractFile;
+import ru.priamosudov.xmlcomparator.file.SwiftFile;
 import ru.priamosudov.xmlcomparator.xml.xmlfile.XmlFile;
 
 import java.io.File;
@@ -11,7 +13,7 @@ import java.util.zip.ZipFile;
 
 public class ZipArchive {
     private final File file;
-    private XmlFile[] xmlFiles = new XmlFile[2];
+    private AbstractFile[] files = new AbstractFile[2];
 
     public ZipArchive(File file) {
         this.file = file;
@@ -28,12 +30,15 @@ public class ZipArchive {
                 ZipEntry zipEntry = (ZipEntry) entries.nextElement();
 
                 if (zipEntry.getName().endsWith(".xml")) {
-                    xmlFiles[i] = new XmlFile(zipFile.getInputStream(zipEntry));
+                    files[i] = new XmlFile(zipFile.getInputStream(zipEntry));
+                    i++;
+                } else if (zipEntry.getName().endsWith(".swt")) {
+                    files[i] = new SwiftFile(zipFile.getInputStream(zipEntry));
                     i++;
                 }
             }
 
-            DirectoryValidator.checkXmlFilesAmount(xmlFiles);
+            DirectoryValidator.checkXmlFilesAmount(files);
             readXmlFilesBeforeZipFileClose();
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,12 +54,12 @@ public class ZipArchive {
     }
 
     private void readXmlFilesBeforeZipFileClose() {
-        for (XmlFile xmlFile: xmlFiles) {
-            xmlFile.read();
+        for (AbstractFile file: files) {
+            file.read();
         }
     }
 
-    public XmlFile[] getXmlFiles() {
-        return xmlFiles;
+    public AbstractFile[] getXmlFiles() {
+        return files;
     }
 }
