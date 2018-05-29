@@ -56,18 +56,23 @@ public class SwiftFile extends AbstractFile {
         Document document = documentBuilder.parse(new InputSource(new StringReader(fileContent)));
 
         NodeList nodeList = document.getElementsByTagName(FIELD_NAME_FOR_CHANGE);
-        for (int i=0;i<nodeList.getLength();i++) {
-            changeFileName(document, nodeList.item(i));
+        for (int i=0; i < nodeList.getLength();i++) {
+            Node node = nodeList.item(i);
+            changeFieldName(document, node);
         }
 
         fileContent = castDocumentToString(document);
     }
 
-    private void changeFileName(Document document, Node node) {
+    private void changeFieldName(Document document, Node node) {
         String nameAttrValue = node.getFirstChild().getNextSibling().getFirstChild().getNodeValue();
-        node.removeChild(node.getFirstChild());
+        String firstComponentAttrValue = node.getFirstChild().getNextSibling().getNextSibling()
+                .getNextSibling().getFirstChild().getNodeValue();
 
-        document.renameNode(node, null, FIELD_NAME_FOR_CHANGE + nameAttrValue);
+        document.renameNode(node, null, FIELD_NAME_FOR_CHANGE + "_" +
+                nameAttrValue + "_" + firstComponentAttrValue);
+
+//        node.removeChild(node.getFirstChild().getNextSibling());
     }
 
     private String castDocumentToString(Document document) {
