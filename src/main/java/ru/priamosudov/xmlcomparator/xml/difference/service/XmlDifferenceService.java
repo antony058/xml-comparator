@@ -1,4 +1,4 @@
-package ru.priamosudov.xmlcomparator.xml.xmldifference.service;
+package ru.priamosudov.xmlcomparator.xml.difference.service;
 
 import org.xmlunit.diff.Difference;
 

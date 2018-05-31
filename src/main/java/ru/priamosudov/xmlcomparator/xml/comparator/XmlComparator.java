@@ -1,11 +1,9 @@
-package ru.priamosudov.xmlcomparator.xml.xmlfile;
+package ru.priamosudov.xmlcomparator.xml.comparator;
 
+import org.w3c.dom.Element;
 import org.xmlunit.XMLUnitException;
 import org.xmlunit.builder.DiffBuilder;
-import org.xmlunit.diff.DefaultNodeMatcher;
-import org.xmlunit.diff.Diff;
-import org.xmlunit.diff.Difference;
-import org.xmlunit.diff.ElementSelectors;
+import org.xmlunit.diff.*;
 import ru.priamosudov.xmlcomparator.exception.ValidationException;
 import ru.priamosudov.xmlcomparator.file.AbstractFile;
 
@@ -18,11 +16,18 @@ public class XmlComparator {
     private final AbstractFile xmlFileDev;
     private final AbstractFile xmlFileProm;
     private final List<Difference> differences;
+    private final ElementSelector elementSelector;
 
     public XmlComparator(AbstractFile xmlFileDev, AbstractFile xmlFileProm) {
         this.xmlFileDev = xmlFileDev;
         this.xmlFileProm = xmlFileProm;
         differences = new ArrayList<>();
+
+        elementSelector = ElementSelectors.conditionalBuilder()
+                .whenElementIsNamed("Linkages")
+                .thenUse(ElementSelectors.byName)
+                .elseUse(ElementSelectors.byNameAndText)
+                .build();
     }
 
     public void compareXml() {
@@ -63,12 +68,33 @@ public class XmlComparator {
                     .checkForSimilar()
                     .ignoreComments()
                     .ignoreWhitespace()
-                    .withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.and(ElementSelectors.byName)))
+                    .withDifferenceEvaluator(((comparison, outcome) -> {
+                        if (outcome == ComparisonResult.DIFFERENT &&
+                                comparison.getType() == ComparisonType.CHILD_NODELIST_SEQUENCE) {
+                            return ComparisonResult.EQUAL;
+                        }
+
+                        return outcome;
+                    }))
+                    .withNodeMatcher(new DefaultNodeMatcher(new LinkagesElementSelector(), ElementSelectors.byName))
                     .build();
         } catch (XMLUnitException e) {
             throw new ValidationException(NOT_VALID_XML_FILE.concat(". ").concat(e.getMessage()));
         }
 
         return diff;
+    }
+
+    private class LinkagesElementSelector implements ElementSelector {
+
+        @Override
+        public boolean canBeCompared(Element controlElement, Element testElement) {
+            if (controlElement.getTagName().equals(testElement.getTagName()) &&
+                    controlElement.getChildNodes().getLength() == testElement.getChildNodes().getLength()) {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

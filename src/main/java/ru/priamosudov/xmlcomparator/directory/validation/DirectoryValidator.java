@@ -2,7 +2,6 @@ package ru.priamosudov.xmlcomparator.directory.validation;
 
 import ru.priamosudov.xmlcomparator.exception.ValidationException;
 import ru.priamosudov.xmlcomparator.file.AbstractFile;
-import ru.priamosudov.xmlcomparator.xml.xmlfile.XmlFile;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package ru.priamosudov.xmlcomparator.xml.xmldifference.model;
+package ru.priamosudov.xmlcomparator.xml.difference.model;
 
 import javax.persistence.*;
 
@@ -140,5 +140,10 @@ public class XmlDifference {
         }
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return message;
     }
 }

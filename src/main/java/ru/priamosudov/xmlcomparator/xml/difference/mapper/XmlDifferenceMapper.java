@@ -1,10 +1,10 @@
-package ru.priamosudov.xmlcomparator.xml.xmldifference.mapper;
+package ru.priamosudov.xmlcomparator.xml.difference.mapper;
 
 import org.xmlunit.diff.Comparison;
 import org.xmlunit.diff.Difference;
-import ru.priamosudov.xmlcomparator.xml.xmldifference.compiler.XmlDifferenceMessageCompiler;
-import ru.priamosudov.xmlcomparator.xml.xmldifference.model.XmlDifference;
-import ru.priamosudov.xmlcomparator.xml.xmldifference.utils.XPathUtils;
+import ru.priamosudov.xmlcomparator.xml.difference.compiler.XmlDifferenceMessageCompiler;
+import ru.priamosudov.xmlcomparator.xml.difference.model.XmlDifference;
+import ru.priamosudov.xmlcomparator.xml.difference.utils.XPathUtils;
 
 import java.util.ArrayList;
 import java.util.List;

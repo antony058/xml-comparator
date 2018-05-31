@@ -1,16 +1,15 @@
-package ru.priamosudov.xmlcomparator.xml.xmldifference.service.impl;
+package ru.priamosudov.xmlcomparator.xml.difference.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.xmlunit.diff.Difference;
-import ru.priamosudov.xmlcomparator.xml.xmldifference.dao.XmlDifferenceDao;
-import ru.priamosudov.xmlcomparator.xml.xmldifference.mapper.XmlDifferenceMapper;
-import ru.priamosudov.xmlcomparator.xml.xmldifference.model.XmlDifference;
-import ru.priamosudov.xmlcomparator.xml.xmldifference.service.XmlDifferenceService;
+import ru.priamosudov.xmlcomparator.xml.difference.dao.XmlDifferenceDao;
+import ru.priamosudov.xmlcomparator.xml.difference.mapper.XmlDifferenceMapper;
+import ru.priamosudov.xmlcomparator.xml.difference.model.XmlDifference;
+import ru.priamosudov.xmlcomparator.xml.difference.service.XmlDifferenceService;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class XmlDifferenceServiceImpl implements XmlDifferenceService {

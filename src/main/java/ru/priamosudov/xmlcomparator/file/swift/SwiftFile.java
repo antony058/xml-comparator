@@ -1,4 +1,4 @@
-package ru.priamosudov.xmlcomparator.file;
+package ru.priamosudov.xmlcomparator.file.swift;
 
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import org.w3c.dom.Document;
@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import ru.priamosudov.xmlcomparator.exception.ValidationException;
+import ru.priamosudov.xmlcomparator.file.AbstractFile;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -71,8 +72,6 @@ public class SwiftFile extends AbstractFile {
 
         document.renameNode(node, null, FIELD_NAME_FOR_CHANGE + "_" +
                 nameAttrValue + "_" + firstComponentAttrValue);
-
-//        node.removeChild(node.getFirstChild().getNextSibling());
     }
 
     private String castDocumentToString(Document document) {

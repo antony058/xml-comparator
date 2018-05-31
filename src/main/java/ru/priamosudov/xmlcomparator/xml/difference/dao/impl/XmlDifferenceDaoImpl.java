@@ -1,8 +1,8 @@
-package ru.priamosudov.xmlcomparator.xml.xmldifference.dao.impl;
+package ru.priamosudov.xmlcomparator.xml.difference.dao.impl;
 
 import org.springframework.stereotype.Repository;
-import ru.priamosudov.xmlcomparator.xml.xmldifference.dao.XmlDifferenceDao;
-import ru.priamosudov.xmlcomparator.xml.xmldifference.model.XmlDifference;
+import ru.priamosudov.xmlcomparator.xml.difference.dao.XmlDifferenceDao;
+import ru.priamosudov.xmlcomparator.xml.difference.model.XmlDifference;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -1,4 +1,4 @@
-package ru.priamosudov.xmlcomparator.xml.xmldifference.utils;
+package ru.priamosudov.xmlcomparator.xml.difference.utils;
 
 public class XPathUtils {
     public static String removeQuotes(String xpath) {

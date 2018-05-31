@@ -2,8 +2,8 @@ package ru.priamosudov.xmlcomparator.ziparchive;
 
 import ru.priamosudov.xmlcomparator.directory.validation.DirectoryValidator;
 import ru.priamosudov.xmlcomparator.file.AbstractFile;
-import ru.priamosudov.xmlcomparator.file.SwiftFile;
-import ru.priamosudov.xmlcomparator.xml.xmlfile.XmlFile;
+import ru.priamosudov.xmlcomparator.file.swift.SwiftFile;
+import ru.priamosudov.xmlcomparator.file.xml.XmlFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class ZipArchive {
             while (entries.hasMoreElements()) {
                 ZipEntry zipEntry = (ZipEntry) entries.nextElement();
 
-                if (zipEntry.getName().endsWith(".xml")) {
+                if (zipEntry.getName().endsWith(".xml") || zipEntry.getName().endsWith(".txt")) {
                     files[i] = new XmlFile(zipFile.getInputStream(zipEntry));
                     i++;
                 } else if (zipEntry.getName().endsWith(".swt")) {

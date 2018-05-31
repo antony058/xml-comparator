@@ -29,8 +29,6 @@ public class Application {
         DirectoryLookup directoryLookup = context.getBean(DirectoryLookup.class);
         directoryLookup.lookup();
         directoryLookup.pushFilesToZipHandler();
-
-//        TrySwift.parse();
     }
 
     @Bean(name = "zipArchiveServiceThreadPool")
