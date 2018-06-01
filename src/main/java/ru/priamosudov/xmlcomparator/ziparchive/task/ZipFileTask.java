@@ -1,8 +1,8 @@
 package ru.priamosudov.xmlcomparator.ziparchive.task;
 
 import ru.priamosudov.xmlcomparator.file.AbstractFile;
-import ru.priamosudov.xmlcomparator.xml.difference.service.XmlDifferenceService;
 import ru.priamosudov.xmlcomparator.xml.comparator.XmlComparator;
+import ru.priamosudov.xmlcomparator.xml.difference.service.XmlDifferenceService;
 import ru.priamosudov.xmlcomparator.ziparchive.ZipArchive;
 
 import java.io.File;
